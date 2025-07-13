@@ -4,5 +4,8 @@
   "rsc": false,
   "tsx": true,
   "tailwind": true,
-  "aliases": {}
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils"
+  }
 }
