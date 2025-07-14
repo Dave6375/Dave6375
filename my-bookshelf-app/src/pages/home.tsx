@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, Camera, Loader2, Eye } from 'lucide-react';
+import { Upload, Loader2, Eye } from 'lucide-react';
 
 export type ObjectResult = {
   name: string;
@@ -48,21 +48,11 @@ export default function Home() {
       // Convert file to base64
       const base64 = await fileToBase64(selectedFile);
       
-      // Call your API here
-      const response = await fetch('/api/analyze', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ image: base64 }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Analysis failed');
-      }
-
-      const data = await response.json();
-      setResults(data.results || []);
+      // Call OpenAI function directly
+      const { analyzeObjects } = await import('../lib/openai');
+      const results = await analyzeObjects(base64);
+      
+      setResults(results || []);
     } catch (error) {
       console.error('Error analyzing image:', error);
       alert('Error analyzing image. Please try again.');
