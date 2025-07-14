@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'wouter';
 import Home from './pages/home';
 import NotFound from './pages/not-found';
-import './app.css';
+import './App.css';
 
 function App() {
   return (
