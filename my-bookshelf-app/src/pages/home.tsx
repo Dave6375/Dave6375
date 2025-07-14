@@ -48,7 +48,25 @@ export default function Home() {
       // Convert file to base64
       const base64 = await fileToBase64(selectedFile);
       
-      // Call your API here
+      // For demo purposes, simulate analysis with mock data
+      // In production, you would call your actual API endpoint
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate API delay
+      
+      // Mock analysis results - in production, this would use the base64 data
+      const mockResults: ObjectResult[] = [
+        {
+          name: "Demo Object",
+          category: "Technology", 
+          history: `This is a demonstration of the object identification system. Image data (${base64.length} characters) has been processed. In a real implementation, this would connect to an AI service to analyze the uploaded image.`,
+          chemicalCompound: "This is demo data. Real analysis would provide actual chemical composition information.",
+          confidence: 85
+        }
+      ];
+      
+      setResults(mockResults);
+      
+      // Uncomment and modify this section when you have a real API endpoint:
+      /*
       const response = await fetch('/api/analyze', {
         method: 'POST',
         headers: {
@@ -63,6 +81,7 @@ export default function Home() {
 
       const data = await response.json();
       setResults(data.results || []);
+      */
     } catch (error) {
       console.error('Error analyzing image:', error);
       alert('Error analyzing image. Please try again.');

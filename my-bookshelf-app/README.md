@@ -1,46 +1,148 @@
-# Getting Started with Create React App
+# Object Identifier - AI-Powered Image Analysis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React web application that allows users to upload images and identify objects using AI-powered analysis. Built with React, TypeScript, and Tailwind CSS.
+
+## Features
+
+- **Drag & Drop Upload**: Easy image upload with drag-and-drop functionality
+- **Image Preview**: Preview uploaded images before analysis
+- **Mock AI Analysis**: Demo functionality with simulated AI object identification
+- **Responsive Design**: Works on desktop and mobile devices
+- **PWA Ready**: Installable as a Progressive Web App
+- **Accessibility**: Built with accessibility in mind
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+2. Navigate to the project directory:
+   ```bash
+   cd my-bookshelf-app
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+This creates a `build` folder with optimized files ready for deployment.
+
+### Deployment Options
+
+#### Option 1: Static File Hosting
+Upload the contents of the `build` folder to any static hosting service:
+- GitHub Pages
+- Netlify
+- Vercel
+- AWS S3
+- Azure Static Web Apps
+
+#### Option 2: Local Server
+Install and run a local server:
+```bash
+npm install -g serve
+serve -s build
+```
+
+#### Option 3: Docker (Optional)
+Create a `Dockerfile` in the project root:
+```dockerfile
+FROM nginx:alpine
+COPY build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+Build and run:
+```bash
+docker build -t object-identifier .
+docker run -p 80:80 object-identifier
+```
+
+### PWA Installation
+Users can install this app on their devices:
+- **Desktop**: Click the install button in the browser address bar
+- **Mobile**: Use "Add to Home Screen" from the browser menu
+
+## API Integration
+
+The app currently uses mock data for demonstration. To integrate with a real AI service:
+
+1. Uncomment the API call section in `src/pages/home.tsx`
+2. Replace the mock endpoint with your actual API
+3. Update the request format to match your API requirements
+
+Example API integration:
+```typescript
+const response = await fetch('/api/analyze', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ image: base64 }),
+});
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Runs the app in development mode. The page will reload when you make changes.
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in interactive watch mode.
 
 ### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Builds the app for production to the `build` folder.
 
 ### `npm run eject`
+**Note: This is a one-way operation!** 
+Removes the single build dependency and copies configuration files.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Technology Stack
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **React 19** - User interface framework
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **Wouter** - Lightweight routing
+- **React Query** - Data fetching and caching
+- **Lucide React** - Icons
+- **Framer Motion** - Animations
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Browser Support
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Fork the project
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+
+This project is private and proprietary.
