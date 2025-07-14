@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# Object Identifier App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application that identifies objects in images using AI-powered analysis. Upload an image and get detailed information about objects including their name, category, historical background, and chemical composition.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Image Upload**: Drag and drop or click to upload images (JPG, PNG, GIF up to 10MB)
+- **AI Analysis**: Uses OpenAI's GPT-4 Vision to analyze objects in images
+- **Detailed Results**: Provides object name, category, history, and chemical composition
+- **Confidence Scoring**: Shows confidence level for each identification
+- **Modern UI**: Clean, responsive interface with Tailwind CSS
 
-### `npm start`
+## Setup and Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. (Optional) Set up OpenAI API key:
+   ```bash
+   echo "OPENAI_API_KEY=your_api_key_here" > .env
+   ```
+   
+   If no API key is provided, the app will use mock data for testing.
 
-### `npm test`
+3. Run the application:
+   ```bash
+   npm run dev
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   This will start both the backend server (port 5000) and frontend (port 3000).
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Open http://localhost:3000 in your browser
+2. Upload an image by dragging and dropping or clicking the upload area
+3. Click "Analyze Image" to get AI-powered object identification
+4. View detailed results including historical background and chemical composition
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## API Endpoints
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `GET /api/health` - Health check endpoint
+- `POST /api/analyze` - Analyze uploaded image
+  - Body: `{"image": "base64-encoded-image-string"}`
+  - Returns: `{"results": [{"name": "", "category": "", "history": "", "chemicalCompound": "", "confidence": 0}]}`
 
-### `npm run eject`
+## Fixed Issues
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The following issues were resolved to get the app running:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Invalid react-scripts version**: Changed from `0.0.0` to `5.0.1`
+2. **Incomplete index.tsx**: Added missing ReactDOM.createRoot call
+3. **CSS import case mismatch**: Fixed `./app.css` to `./App.css`
+4. **Tailwind CSS configuration**: Fixed PostCSS plugin issues and downgraded to v3 for compatibility
+5. **ESLint warnings**: Removed unused imports and fixed accessibility issues
+6. **Missing API backend**: Created Express server with OpenAI integration
+7. **Missing file cleanup**: Removed duplicate index.html from src directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Technologies Used
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Frontend**: React, TypeScript, Tailwind CSS, Wouter (routing)
+- **Backend**: Express.js, OpenAI API
+- **Build Tools**: React Scripts, PostCSS, Autoprefixer
+- **Testing**: Jest, React Testing Library
 
-## Learn More
+## Development Commands
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `npm start` - Start frontend only
+- `npm run server` - Start backend only  
+- `npm run dev` - Start both frontend and backend
+- `npm run build` - Build production bundle
+- `npm test` - Run tests
