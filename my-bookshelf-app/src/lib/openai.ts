@@ -1,6 +1,11 @@
 import OpenAI from "openai";
 import { ObjectResult } from "../pages/home";
 
+export async function analyzeObjectImage(base64Image: string): Promise<ObjectResult[]> {
+  const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true
+  });
 
   const visionResponse = await openai.chat.completions.create({
     model: "gpt-4o",

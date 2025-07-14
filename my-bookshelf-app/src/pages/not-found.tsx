@@ -19,7 +19,11 @@ export default function NotFound() {
             The page you're looking for doesn't exist. It might have been moved or deleted.
           </p>
           
-
+          <Link href="/">
+            <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+              <Home className="mr-2 h-4 w-4" />
+              Go Home
+            </button>
           </Link>
         </div>
         

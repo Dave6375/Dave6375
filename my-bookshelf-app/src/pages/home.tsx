@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { AlertCircle, Upload, Loader2, Eye, Settings } from 'lucide-react';
+import { aiAnalysisService } from '../lib/aiService';
 
 
 export type ObjectResult = {
