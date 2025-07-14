@@ -86,22 +86,33 @@ Users can install this app on their devices:
 
 ## API Integration
 
-The app currently uses mock data for demonstration. To integrate with a real AI service:
+The app supports both mock data (for demonstration) and real AI analysis with OpenAI's GPT-4 Vision API.
 
-1. Uncomment the API call section in `src/pages/home.tsx`
-2. Replace the mock endpoint with your actual API
-3. Update the request format to match your API requirements
+### Quick Setup for Real AI Analysis
 
-Example API integration:
-```typescript
-const response = await fetch('/api/analyze', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ image: base64 }),
-});
-```
+1. Get an OpenAI API key from [OpenAI API Keys](https://platform.openai.com/api-keys)
+2. Copy `.env.example` to `.env` and add your API key:
+   ```env
+   REACT_APP_OPENAI_API_KEY=sk-your-actual-api-key-here
+   REACT_APP_USE_MOCK_DATA=false
+   ```
+3. Restart the development server: `npm start`
+
+📖 **For detailed setup instructions, see [API_SETUP.md](API_SETUP.md)**
+
+### Configuration Status
+
+The app includes a configuration panel (click the ⚙️ icon) that shows:
+- ✅/❌ API Key status
+- Current mode (Mock Data vs Real AI Analysis)
+- AI service being used
+
+### Security Notes
+
+- Never commit your API key to version control
+- The `.env` file is already in `.gitignore`
+- API keys in React apps are visible to users - implement server-side API for production use
+- Consider rate limiting and usage monitoring for production deployments
 
 ## Available Scripts
 
