@@ -20,10 +20,10 @@ export default function NotFound() {
           </p>
           
           <Link href="/">
-            <a className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+            <button className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
               <Home className="h-5 w-5" />
               Back to Home
-            </a>
+            </button>
           </Link>
         </div>
         
