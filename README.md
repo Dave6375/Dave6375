@@ -1,4 +1,11 @@
 ## Hi there 👋
+This is my react applicstion that is supposed to identify object
+How it works 
+1. take a picture
+2. the react appliction uses OpenAI
+3. Identifys Object or thing
+4. Provides the name of said thing, the history behide it, and its chemical compound
+5. pictures can be taken streight up or they can be uploaded from phone
 
 <!--
 **Dave6375/Dave6375** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
