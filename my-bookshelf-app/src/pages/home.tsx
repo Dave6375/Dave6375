@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, Camera, Loader2, Eye } from 'lucide-react';
+import { Upload, Loader2, Eye } from 'lucide-react';
 
 export type ObjectResult = {
   name: string;
