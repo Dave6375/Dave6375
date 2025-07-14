@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, Loader2, Eye } from 'lucide-react';
+
 
 export type ObjectResult = {
   name: string;
@@ -14,6 +14,8 @@ export default function Home() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [results, setResults] = useState<ObjectResult[]>([]);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [showConfig, setShowConfig] = useState(false);
+  const [config] = useState(aiAnalysisService.getConfiguration());
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -48,11 +50,7 @@ export default function Home() {
       // Convert file to base64
       const base64 = await fileToBase64(selectedFile);
       
-      // Call OpenAI function directly
-      const { analyzeObjects } = await import('../lib/openai');
-      const results = await analyzeObjects(base64);
-      
-      setResults(results || []);
+
     } catch (error) {
       console.error('Error analyzing image:', error);
       alert('Error analyzing image. Please try again.');
@@ -80,12 +78,59 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Object Identifier
-          </h1>
-          <p className="text-gray-600">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <h1 className="text-4xl font-bold text-gray-900">
+              Object Identifier
+            </h1>
+            <button
+              onClick={() => setShowConfig(!showConfig)}
+              className="p-2 rounded-full hover:bg-white/50 transition-colors"
+              title="Configuration"
+            >
+              <Settings className="h-6 w-6 text-gray-600" />
+            </button>
+          </div>
+          <p className="text-gray-600 mb-4">
             Upload an image to identify objects with AI-powered analysis
           </p>
+          
+          {/* Configuration Status */}
+          {showConfig && (
+            <div className="bg-white rounded-lg shadow-lg p-4 mb-4 text-left">
+              <h3 className="font-semibold text-gray-900 mb-3">Configuration Status</h3>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full ${config.hasApiKey ? 'bg-green-500' : 'bg-red-500'}`} />
+                  <span>API Key: {config.hasApiKey ? 'Configured' : 'Not configured'}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full ${config.useMockData ? 'bg-yellow-500' : 'bg-green-500'}`} />
+                  <span>Mode: {config.useMockData ? 'Mock Data' : 'Real AI Analysis'}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-blue-500" />
+                  <span>AI Service: {config.aiService}</span>
+                </div>
+              </div>
+              {!config.hasApiKey && (
+                <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-md">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="h-5 w-5 text-amber-600 mt-0.5" />
+                    <div className="text-sm">
+                      <p className="font-medium text-amber-800">No API key configured</p>
+                      <p className="text-amber-700 mt-1">
+                        Add your OpenAI API key to <code className="bg-amber-100 px-1 rounded">.env</code> file:
+                      </p>
+                      <code className="block mt-2 bg-amber-100 p-2 rounded text-xs">
+                        REACT_APP_OPENAI_API_KEY=your_api_key_here<br />
+                        REACT_APP_USE_MOCK_DATA=false
+                      </code>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </header>
 
         {/* Upload Area */}
