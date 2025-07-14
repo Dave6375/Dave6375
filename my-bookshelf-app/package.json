@@ -41,7 +41,10 @@
     "zod": "^3.23.8"
   },
   "scripts": {
-
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -71,6 +74,7 @@
     "@tailwindcss/postcss": "^4.1.11",
     "@types/pg": "^8.15.4",
     "autoprefixer": "^10.4.21",
-
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
   }
 }

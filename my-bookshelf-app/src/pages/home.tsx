@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { AlertCircle, Upload, Loader2, Eye, Settings } from 'lucide-react';
+import { aiAnalysisService } from '../lib/aiService';
 
 
 export type ObjectResult = {
@@ -50,7 +52,10 @@ export default function Home() {
       // Convert file to base64
       const base64 = await fileToBase64(selectedFile);
       
-
+      // Analyze the image
+      const analysisResults = await aiAnalysisService.analyzeImage(base64);
+      setResults(analysisResults);
+      
     } catch (error) {
       console.error('Error analyzing image:', error);
       alert('Error analyzing image. Please try again.');
