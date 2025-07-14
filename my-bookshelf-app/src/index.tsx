@@ -14,12 +14,12 @@ const queryClient = new QueryClient({
   },
 });
 
-// Get the root element
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-// Render the app
+
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
